@@ -3,7 +3,7 @@
 Production-ready starter for a small-shop billing workflow with analytics.
 
 ## Tech Stack
-- Frontend: Angular 18 (Angular CLI)
+- Frontend: Angular 18 (standalone) with Vite
 - Backend: ASP.NET Core .NET 8 Web API + EF Core (SQLite)
 - DB script: `db/schema-and-seed.sql`
 
@@ -29,9 +29,7 @@ Production-ready starter for a small-shop billing workflow with analytics.
    ```
 3. API starts (default Kestrel URL). Swagger is enabled in development.
 
-## Frontend Setup (Fix for ESM plugin error)
-This project now uses standard Angular CLI tooling (no AnalogJS/Vite plugin), which avoids the `resolved to an ESM file` startup error.
-
+## Frontend Setup
 1. Run:
    ```bash
    cd frontend
@@ -47,7 +45,7 @@ This project now uses standard Angular CLI tooling (no AnalogJS/Vite plugin), wh
 
 ## Deployment
 - Backend: publish for IIS/Kestrel via `dotnet publish -c Release`.
-- Frontend: static build with `npm run build` (deploy `frontend/dist/kaccha-bill-ui/browser`).
+- Frontend: static build with `npm run build` (deploy `frontend/dist`).
 
 ## Notes
 - Includes DTO validation, central error middleware, and structured services.
