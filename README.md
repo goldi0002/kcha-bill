@@ -3,7 +3,7 @@
 Production-ready starter for a small-shop billing workflow with analytics.
 
 ## Tech Stack
-- Frontend: Angular 18 (standalone) with Vite
+- Frontend: Angular 18 (standalone) + Tailwind CSS utilities
 - Backend: ASP.NET Core .NET 8 Web API + EF Core (SQLite)
 - DB script: `db/schema-and-seed.sql`
 
@@ -34,7 +34,7 @@ Production-ready starter for a small-shop billing workflow with analytics.
    ```bash
    cd frontend
    npm install
-   npm run start
+   npm start
    ```
 2. Open `http://localhost:4200`.
 

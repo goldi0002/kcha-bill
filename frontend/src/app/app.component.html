@@ -1,84 +1,91 @@
-<div class="container">
-  <header>
-    <h1>🧾 Smart Kaccha Bill</h1>
-    <p>Simple billing for kirana stores</p>
-  </header>
+<div class="min-h-screen bg-slate-950 text-slate-100">
+  <div class="mx-auto max-w-7xl space-y-4 px-4 py-6">
+    <header class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 shadow-lg">
+      <h1 class="text-2xl font-bold">🧾 Smart Kaccha Bill</h1>
+      <p class="mt-1 text-sm text-slate-300">Simple billing for kirana stores</p>
+    </header>
 
-  <section class="panel insights">
-    <h2>📊 Insights</h2>
-    <div class="chips">
-      <span *ngFor="let i of topProducts()">🔥 {{ i.name }} ({{ i.value }})</span>
-    </div>
-    <div class="chips">
-      <span *ngFor="let i of topCategories()">🏷️ {{ i.name }} (₹{{ i.value.toFixed(0) }})</span>
-    </div>
-  </section>
-
-  <section class="grid-two">
-    <div class="panel">
-      <h2>📦 Product Setup</h2>
-      <div class="row">
-        <input [(ngModel)]="form.name" placeholder="Product" />
-        <select [(ngModel)]="form.categoryId"><option [ngValue]="0">Category</option><option *ngFor="let c of categories()" [ngValue]="c.id">{{ c.name }}</option></select>
-        <input [(ngModel)]="form.price" type="number" placeholder="Price" />
-        <button (click)="saveProduct()">{{ editingProductId ? 'Update' : 'Add' }}</button>
+    <section class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+      <h2 class="mb-3 text-lg font-semibold">📊 Insights</h2>
+      <div class="mb-2 flex flex-wrap gap-2">
+        <span *ngFor="let i of topProducts()" class="rounded-full bg-indigo-600/30 px-3 py-1 text-xs">🔥 {{ i.name }} ({{ i.value }})</span>
       </div>
-      <table>
-        <tr><th>Name</th><th>Category</th><th>Price</th><th></th></tr>
-        <tr *ngFor="let p of products()">
-          <td>{{ p.name }}</td><td>{{ p.categoryName }}</td><td>₹{{ p.price }}</td>
-          <td><button (click)="editProduct(p)">Edit</button> <button (click)="deleteProduct(p.id)">Delete</button></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="panel">
-      <h2>🛒 Billing Screen</h2>
-      <div class="row">
-        <input [ngModel]="search()" (ngModelChange)="search.set($event)" placeholder="Search products" />
-        <select [ngModel]="selectedCategory()" (ngModelChange)="selectedCategory.set($event)">
-          <option [ngValue]="null">All</option>
-          <option *ngFor="let c of categories()" [ngValue]="c.id">{{ c.name }}</option>
-        </select>
+      <div class="flex flex-wrap gap-2">
+        <span *ngFor="let i of topCategories()" class="rounded-full bg-emerald-600/30 px-3 py-1 text-xs">🏷️ {{ i.name }} (₹{{ i.value.toFixed(0) }})</span>
       </div>
-      <div class="products">
-        <button class="card" *ngFor="let p of filteredProducts()" (click)="addToCart(p)">
-          <strong>{{ p.name }}</strong>
-          <small>{{ p.categoryName }}</small>
-          <span>₹{{ p.price }}</span>
-        </button>
+    </section>
+
+    <section class="grid gap-4 lg:grid-cols-2">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+        <h2 class="mb-3 text-lg font-semibold">📦 Product Setup</h2>
+        <div class="mb-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <input [(ngModel)]="form.name" placeholder="Product" class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2" />
+          <select [(ngModel)]="form.categoryId" class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2"><option [ngValue]="0">Category</option><option *ngFor="let c of categories()" [ngValue]="c.id">{{ c.name }}</option></select>
+          <input [(ngModel)]="form.price" type="number" placeholder="Price" class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2" />
+          <button (click)="saveProduct()" class="rounded-lg bg-indigo-600 px-3 py-2 font-medium hover:bg-indigo-500">{{ editingProductId ? 'Update' : 'Add' }}</button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <tr class="border-b border-slate-700"><th class="p-2">Name</th><th class="p-2">Category</th><th class="p-2">Price</th><th class="p-2"></th></tr>
+            <tr *ngFor="let p of products()" class="border-b border-slate-800">
+              <td class="p-2">{{ p.name }}</td><td class="p-2">{{ p.categoryName }}</td><td class="p-2">₹{{ p.price }}</td>
+              <td class="p-2"><button (click)="editProduct(p)" class="mr-2 rounded bg-amber-600 px-2 py-1 text-xs">Edit</button><button (click)="deleteProduct(p.id)" class="rounded bg-rose-600 px-2 py-1 text-xs">Delete</button></td>
+            </tr>
+          </table>
+        </div>
       </div>
 
-      <h3>Current Bill</h3>
-      <div *ngFor="let c of cart()" class="row item">
-        <span>{{ c.product.name }}</span>
-        <div><button (click)="changeQty(c.product.id,-1)">-</button> {{ c.qty }} <button (click)="changeQty(c.product.id,1)">+</button></div>
-      </div>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+        <h2 class="mb-3 text-lg font-semibold">🛒 Billing Screen</h2>
+        <div class="mb-3 grid gap-2 sm:grid-cols-2">
+          <input [ngModel]="search()" (ngModelChange)="search.set($event)" placeholder="Search products" class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2" />
+          <select [ngModel]="selectedCategory()" (ngModelChange)="selectedCategory.set($event)" class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2">
+            <option [ngValue]="null">All</option>
+            <option *ngFor="let c of categories()" [ngValue]="c.id">{{ c.name }}</option>
+          </select>
+        </div>
 
-      <div class="row totals">
-        <label>Discount <input [ngModel]="discountAmount()" (ngModelChange)="discountAmount.set(+$event)" type="number" /></label>
-        <label>GST <select [ngModel]="gstPercent()" (ngModelChange)="gstPercent.set(+$event)"><option *ngFor="let g of [0,5,12,18,28]" [ngValue]="g">{{g}}%</option></select></label>
-      </div>
-      <p>Subtotal: ₹{{ subTotal().toFixed(2) }}</p>
-      <p>Tax: ₹{{ taxAmount().toFixed(2) }}</p>
-      <h3>Total: ₹{{ finalAmount().toFixed(2) }}</h3>
-      <button (click)="generateBill()">Generate Bill</button>
-    </div>
-  </section>
+        <div class="mb-4 grid max-h-64 grid-cols-2 gap-2 overflow-auto md:grid-cols-3">
+          <button class="rounded-lg border border-slate-700 bg-slate-800 p-2 text-left hover:bg-slate-700" *ngFor="let p of filteredProducts()" (click)="addToCart(p)">
+            <strong class="block text-sm">{{ p.name }}</strong>
+            <small class="block text-xs text-slate-400">{{ p.categoryName }}</small>
+            <span class="text-sm text-emerald-300">₹{{ p.price }}</span>
+          </button>
+        </div>
 
-  <section class="panel">
-    <h2>🧾 Bill Preview / Print</h2>
-    <div *ngIf="bills().length; else noBills">
-      <div class="bill" *ngFor="let b of bills().slice(0,1)">
-        <p>Invoice: {{ b.invoiceNumber }} | {{ b.createdAt | date:'short' }}</p>
-        <table>
-          <tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr>
-          <tr *ngFor="let i of b.items"><td>{{ i.productName }}</td><td>{{ i.quantity }}</td><td>{{ i.price }}</td><td>{{ i.total }}</td></tr>
-        </table>
-        <h4>Final: ₹{{ b.finalAmount.toFixed(2) }}</h4>
+        <h3 class="mb-2 font-semibold">Current Bill</h3>
+        <div *ngFor="let c of cart()" class="mb-1 flex items-center justify-between rounded bg-slate-800 px-3 py-2 text-sm">
+          <span>{{ c.product.name }}</span>
+          <div><button (click)="changeQty(c.product.id,-1)" class="rounded bg-slate-700 px-2">-</button> <span class="px-2">{{ c.qty }}</span> <button (click)="changeQty(c.product.id,1)" class="rounded bg-slate-700 px-2">+</button></div>
+        </div>
+
+        <div class="my-3 grid gap-2 sm:grid-cols-2">
+          <label class="text-sm">Discount <input [ngModel]="discountAmount()" (ngModelChange)="discountAmount.set(+$event)" type="number" class="mt-1 w-full rounded border border-slate-700 bg-slate-800 px-3 py-2" /></label>
+          <label class="text-sm">GST <select [ngModel]="gstPercent()" (ngModelChange)="gstPercent.set(+$event)" class="mt-1 w-full rounded border border-slate-700 bg-slate-800 px-3 py-2"><option *ngFor="let g of [0,5,12,18,28]" [ngValue]="g">{{g}}%</option></select></label>
+        </div>
+
+        <p class="text-sm">Subtotal: ₹{{ subTotal().toFixed(2) }}</p>
+        <p class="text-sm">Tax: ₹{{ taxAmount().toFixed(2) }}</p>
+        <h3 class="mb-3 text-lg font-bold text-emerald-300">Total: ₹{{ finalAmount().toFixed(2) }}</h3>
+        <button (click)="generateBill()" class="rounded-lg bg-emerald-600 px-4 py-2 font-medium hover:bg-emerald-500">Generate Bill</button>
       </div>
-      <button (click)="printBill()">🖨️ Print</button>
-    </div>
-    <ng-template #noBills>No bills yet.</ng-template>
-  </section>
+    </section>
+
+    <section class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+      <h2 class="mb-3 text-lg font-semibold">🧾 Bill Preview / Print</h2>
+      <div *ngIf="bills().length; else noBills">
+        <div class="mb-3 overflow-x-auto rounded-lg border border-slate-700 p-3" *ngFor="let b of bills().slice(0,1)">
+          <p class="mb-2 text-sm text-slate-300">Invoice: {{ b.invoiceNumber }} | {{ b.createdAt | date:'short' }}</p>
+          <table class="w-full text-left text-sm">
+            <tr class="border-b border-slate-700"><th class="p-2">Item</th><th class="p-2">Qty</th><th class="p-2">Price</th><th class="p-2">Total</th></tr>
+            <tr *ngFor="let i of b.items" class="border-b border-slate-800"><td class="p-2">{{ i.productName }}</td><td class="p-2">{{ i.quantity }}</td><td class="p-2">{{ i.price }}</td><td class="p-2">{{ i.total }}</td></tr>
+          </table>
+          <h4 class="mt-2 font-semibold">Final: ₹{{ b.finalAmount.toFixed(2) }}</h4>
+        </div>
+        <button (click)="printBill()" class="rounded-lg bg-sky-600 px-4 py-2 font-medium hover:bg-sky-500">🖨️ Print</button>
+      </div>
+      <ng-template #noBills>No bills yet.</ng-template>
+    </section>
+  </div>
 </div>
