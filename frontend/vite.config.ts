@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
-import angular from '@analogjs/vite-plugin-angular';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [angular()],
+  plugins: [react()],
   server: { port: 4200 }
 });

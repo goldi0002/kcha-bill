@@ -3,7 +3,7 @@
 Production-ready starter for a small-shop billing workflow with analytics.
 
 ## Tech Stack
-- Frontend: Angular 18 (standalone) + Tailwind CSS utilities
+- Frontend: React 18 + Vite + TypeScript
 - Backend: ASP.NET Core .NET 8 Web API + EF Core (SQLite)
 - DB script: `db/schema-and-seed.sql`
 
@@ -37,6 +37,8 @@ Production-ready starter for a small-shop billing workflow with analytics.
    npm start
    ```
 2. Open `http://localhost:4200`.
+
+The frontend now uses React + Vite and connects to the backend API at `http://localhost:5000/api`.
 
 ## Database Setup
 - API auto-creates SQLite database (`kaccha-bill.db`) and seeds starter data.
