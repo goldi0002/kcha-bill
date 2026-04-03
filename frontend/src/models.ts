@@ -34,3 +34,10 @@ export interface Insight {
   name: string;
   value: number;
 }
+
+export interface AuthResponse {
+  token: string;
+  username: string;
+  role: string;
+  expiresAtUtc: string;
+}

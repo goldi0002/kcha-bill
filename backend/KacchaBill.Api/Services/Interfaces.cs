@@ -28,3 +28,8 @@ public interface IAnalyticsService
     Task<List<InsightDto>> TopProductsAsync();
     Task<List<InsightDto>> TopCategoriesAsync();
 }
+
+public interface IAuthService
+{
+    Task<AuthResponseDto?> LoginAsync(LoginRequestDto dto);
+}

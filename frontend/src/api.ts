@@ -1,10 +1,29 @@
-import type { Bill, Category, Insight, Product } from './models';
+import type { AuthResponse, Bill, Category, Insight, Product } from './models';
 
 const base = 'http://localhost:5000/api';
 
+let token = localStorage.getItem('kb_token') ?? '';
+
+export function setAuthToken(nextToken: string) {
+  token = nextToken;
+  if (nextToken) {
+    localStorage.setItem('kb_token', nextToken);
+  } else {
+    localStorage.removeItem('kb_token');
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json'
+  };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   const response = await fetch(`${base}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     ...init
   });
 
@@ -18,6 +37,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
+  login: (payload: { username: string; password: string }) => request<AuthResponse>('/auth/login', { method: 'POST', body: JSON.stringify(payload) }),
   products: () => request<Product[]>('/products'),
   categories: () => request<Category[]>('/categories'),
   bills: () => request<Bill[]>('/bills'),
