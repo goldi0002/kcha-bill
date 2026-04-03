@@ -3,11 +3,15 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "jsx": "react-jsx",
     "strict": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": false,
-    "useDefineForClassFields": false,
-    "types": ["vite/client"]
-  }
+    "types": [
+      "vite/client"
+    ],
+    "noImplicitAny": false
+  },
+  "include": [
+    "src"
+  ]
 }
