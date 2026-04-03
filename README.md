@@ -13,6 +13,7 @@ Production-ready starter for a small-shop billing workflow with analytics.
 - `db` - SQL schema and sample seed data
 
 ## API Endpoints
+- `POST /api/auth/login`
 - `GET/POST/PUT/DELETE /api/products`
 - `GET/POST /api/categories`
 - `POST /api/bills`, `GET /api/bills`, `GET /api/bills/{id}`
@@ -39,6 +40,8 @@ Production-ready starter for a small-shop billing workflow with analytics.
 2. Open `http://localhost:4200`.
 
 The frontend now uses React + Vite and connects to the backend API at `http://localhost:5000/api`.
+
+Default demo login: `owner` / `owner123`.
 
 ## Database Setup
 - API auto-creates SQLite database (`kaccha-bill.db`) and seeds starter data.

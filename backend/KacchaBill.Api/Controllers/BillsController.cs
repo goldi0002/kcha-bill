@@ -1,10 +1,12 @@
 using KacchaBill.Api.DTOs;
 using KacchaBill.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KacchaBill.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/bills")]
 public class BillsController(IBillService service) : ControllerBase
 {

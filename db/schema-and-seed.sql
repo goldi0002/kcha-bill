@@ -54,3 +54,16 @@ INSERT INTO Products (Name, CategoryId, Price, DefaultDiscount, IsActive) VALUES
 ('Bulb LED 9W',3,75,5,1),
 ('Extension Board',3,349,20,1),
 ('Phone Stand',3,199,10,1);
+
+
+CREATE TABLE Users (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Username NVARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(200) NOT NULL,
+    Role NVARCHAR(40) NOT NULL DEFAULT 'Owner',
+    CreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- SHA-256 of owner123
+INSERT INTO Users (Username, PasswordHash, Role) VALUES
+('owner','43A0D17178A9D26C9E0FE9A74B0B45E38D32F27AED887A008A54BF6E033BF7B9','Owner');
