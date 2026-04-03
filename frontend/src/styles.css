@@ -4,8 +4,17 @@ body { margin: 0; font-family: Inter, Arial, sans-serif; background: #0f172a; co
 section { background: #111827; border: 1px solid #374151; border-radius: 10px; padding: 14px; }
 .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
 .row.between { justify-content: space-between; }
-input, select, button { padding: 8px; border-radius: 6px; border: 1px solid #475569; background: #1f2937; color: #e2e8f0; }
+.nav-wrap { margin-left: auto; }
+input, select, button, .nav-link {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #475569;
+  background: #1f2937;
+  color: #e2e8f0;
+  text-decoration: none;
+}
 button { cursor: pointer; }
+.nav-link.active { border-color: #3b82f6; background: #1e3a8a; }
 ul { padding-left: 16px; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .error { color: #fca5a5; }

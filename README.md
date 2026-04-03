@@ -52,6 +52,15 @@ Default demo login: `owner` / `owner123`.
 - Backend: publish for IIS/Kestrel via `dotnet publish -c Release`.
 - Frontend: static build with `npm run build` (deploy `frontend/dist`).
 
+### Deploy Frontend to Vercel (with React Router history support)
+1. Import the repo in Vercel.
+2. In project settings set **Root Directory** to `frontend`.
+3. Use build command: `npm run build`.
+4. Use output directory: `dist`.
+5. Keep `frontend/vercel.json` in the repo so deep links such as `/billing` or `/products` are rewritten to `index.html`.
+
+This rewrite is required for browser-history routing; without it, direct refresh/open on nested routes returns 404 on Vercel.
+
 ## Notes
 - Includes DTO validation, central error middleware, and structured services.
 - Billing supports discount + GST rates (0/5/12/18/28).
