@@ -5,59 +5,62 @@
 :root {
   color-scheme: dark;
   --bg: #000000;
-  --surface: #0a0a0a;
-  --panel: #121212;
-  --border: #2a2a2a;
+  --surface: #080808;
+  --surface-soft: #111111;
+  --border: #232323;
+  --border-strong: #3a3a3a;
   --text: #ffffff;
-  --muted: #b5b5b5;
-  --accent: #ffffff;
-  --accent-2: #d9d9d9;
+  --muted: #b9b9b9;
   --focus: #ffffff;
 }
 
 body {
   margin: 0;
-  font-family: Inter, 'Segoe UI', sans-serif;
   min-height: 100vh;
+  font-family: Inter, 'Segoe UI', sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 15% -10%, #1a1a1a 0%, transparent 34%),
+    radial-gradient(circle at 95% 0%, #131313 0%, transparent 28%),
+    var(--bg);
   line-height: 1.45;
 }
 
 .page {
-  max-width: 1100px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 32px 20px 56px;
+  padding: 36px 20px 64px;
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
 h1 {
   margin: 0;
-  font-size: clamp(1.9rem, 3vw, 2.4rem);
-  letter-spacing: 0.02em;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  letter-spacing: 0.015em;
 }
 
-h2, h3, p {
+h2,
+h3,
+p {
   margin: 0;
 }
 
 .card {
-  background: var(--surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 45%), var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
-  padding: 18px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.45);
 }
 
 .card-center {
-  width: min(480px, 100%);
+  width: min(500px, 100%);
   margin: 0 auto;
 }
 
 .auth-card {
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
 .app-header {
@@ -65,7 +68,7 @@ h2, h3, p {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .section-heading {
@@ -75,27 +78,28 @@ h2, h3, p {
 
 .section-heading p,
 .muted,
-.hint {
+.hint,
+label {
   color: var(--muted);
 }
 
 .grid-two {
   margin-top: 14px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 14px;
 }
 
 .panel {
   border-radius: 14px;
   border: 1px solid var(--border);
   padding: 14px;
-  background: var(--panel);
+  background: var(--surface-soft);
 }
 
 .clean-list {
   list-style: none;
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   padding: 0;
   display: grid;
   gap: 8px;
@@ -109,10 +113,10 @@ h2, h3, p {
 }
 
 .products-list li {
-  padding: 10px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 12px;
   border: 1px solid var(--border);
-  background: #080808;
+  background: #050505;
 }
 
 .row {
@@ -147,12 +151,12 @@ label {
 
 input,
 select {
-  min-height: 40px;
+  min-height: 42px;
   min-width: 170px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   color: var(--text);
-  background: #050505;
-  border: 1px solid var(--border);
+  background: #040404;
+  border: 1px solid var(--border-strong);
   border-radius: 10px;
   transition: border-color 120ms ease, box-shadow 120ms ease;
 }
@@ -160,43 +164,42 @@ select {
 label {
   display: grid;
   gap: 6px;
-  color: var(--muted);
 }
 
 button,
 .nav-link {
   border: 1px solid transparent;
   border-radius: 10px;
-  min-height: 40px;
+  min-height: 42px;
   padding: 0 14px;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: 150ms ease;
+  transition: 160ms ease;
 }
 
 .btn-primary,
 .chip,
 .nav-link.active {
   color: #000000;
-  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  background: #ffffff;
   border-color: #ffffff;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .btn-ghost,
 .nav-link {
   color: var(--text);
   background: #101010;
-  border-color: var(--border);
+  border-color: var(--border-strong);
 }
 
 button:hover,
 .nav-link:hover {
   transform: translateY(-1px);
-  filter: brightness(1.16);
+  filter: brightness(1.12);
 }
 
 button:focus-visible,
@@ -210,6 +213,7 @@ select:focus-visible {
 
 .nav-wrap {
   margin-top: 0;
+  gap: 8px;
 }
 
 .chips {
@@ -217,6 +221,11 @@ select:focus-visible {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+.chip {
+  border-radius: 999px;
+  padding: 0 12px;
 }
 
 .cart-line {
@@ -235,23 +244,41 @@ select:focus-visible {
 }
 
 .grand-total {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   color: #ffffff;
   font-weight: 700;
 }
 
 .error {
   margin: 0;
-  color: #ff7f7f;
+  color: #ff9f9f;
+}
+
+@media (max-width: 900px) {
+  .app-header {
+    align-items: stretch;
+  }
+
+  .nav-wrap {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+  }
+
+  .nav-wrap > * {
+    flex: 0 0 auto;
+  }
 }
 
 @media (max-width: 720px) {
   .page {
-    padding: 24px 12px 40px;
+    padding: 22px 12px 42px;
   }
 
-  .app-header {
-    align-items: stretch;
+  .card {
+    padding: 16px;
+    border-radius: 16px;
   }
 
   input,
@@ -261,7 +288,18 @@ select:focus-visible {
     width: 100%;
   }
 
+  .products-list li {
+    display: grid;
+    gap: 10px;
+  }
+
+  .row.compact {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
   .row.compact button {
     width: auto;
+    min-width: 44px;
   }
 }
